@@ -22,8 +22,8 @@ public class CustomerService {
 	 * @param id
 	 * @return
 	 */
-	public Customer findById(Integer id) {
-		return repository.findById(id);
+	public Customer load(Integer id) {
+		return repository.load(id);
 	}
 
 	/**

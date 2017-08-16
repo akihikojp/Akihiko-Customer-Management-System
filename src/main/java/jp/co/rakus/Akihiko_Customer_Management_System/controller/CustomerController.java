@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,11 +39,14 @@ public class CustomerController {
 	}
 
 	/**
-	 * 編集jspへフォワード
-	 * @return　編集jspへフォワード
+	 * 1件検索をしたのち、編集jspへフォワード
+	 * 
+	 * @return 編集jspへフォワード
 	 */
 	@RequestMapping("/rename")
-	public String rename() {
+	public String rename(Integer id, Model model) {
+		Customer renameCustomer = service.load(id);
+		model.addAttribute("renameCustomer", renameCustomer);
 		return "rename";
 	}
 
@@ -53,10 +58,17 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping("/save")
-	public String save(Customer customer, Model model) {
+	public String save(@Validated CustomerForm form, BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			return "redirect:/";
+		}
+
+		Customer customer = new Customer();
+		customer.setFirstName(form.getFirstName());
+		customer.setLastName(form.getLastName());
 		service.save(customer);
 		return "redirect:/";
-
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class CustomerRepository {
 	 * @param id
 	 * @return 検索結果
 	 */
-	public Customer findById(Integer id) {
+	public Customer load(Integer id) {
 		String sql = "SELECT id, first_name, last_name FROM customers WHERE id = :id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Customer customer = template.queryForObject(sql, param, customerRowMapper);

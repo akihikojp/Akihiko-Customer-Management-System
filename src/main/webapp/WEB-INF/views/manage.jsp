@@ -12,9 +12,11 @@
 	<h1>顧客管理システム</h1>
 	<form:form modelAttribute="customerForm"
 		action="${pageContext.request.contextPath}/save" method="post">
-	姓:<form:input path="firstName" />
+	姓:<form:errors path="firstName" cssStyle="color:red" element="div" />
+		<form:input path="firstName" />
 		<br>
-	名:<form:input path="lastName" />
+	名:<form:errors path="lastName" cssStyle="color:red" element="div" />
+		<form:input path="lastName" />
 		<br>
 		<input type="submit" value="作成" />
 	</form:form>
@@ -37,11 +39,12 @@
 
 				<td>
 					<form action="${pageContext.request.contextPath}/rename">
-						<input type="submit" value="編集" />
+						<input type="submit" value="編集" /> <input type="hidden" name="id"
+							value="<c:out value="${customer.id}"/>">
 					</form>
 					<form action="${pageContext.request.contextPath}/delete">
-						<input type="submit" value="削除" /> 
-						<input type="hidden" name="id" value="<c:out value="${customer.id}"/>">
+						<input type="submit" value="削除" /> <input type="hidden" name="id"
+							value="<c:out value="${customer.id}"/>">
 					</form>
 
 				</td>

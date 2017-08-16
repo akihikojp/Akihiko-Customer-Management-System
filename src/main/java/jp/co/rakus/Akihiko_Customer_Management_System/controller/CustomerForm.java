@@ -1,5 +1,7 @@
 package jp.co.rakus.Akihiko_Customer_Management_System.controller;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * 顧客管理リストのフォーム
  * 
@@ -10,8 +12,10 @@ public class CustomerForm {
 	/** id */
 	private String id;
 	/** 姓 */
+	@NotBlank(message="姓を入力してください")
 	private String firstName;
 	/** 名 */
+	@NotBlank(message="名を入力してください")
 	private String lastName;
 
 	public String getId() {
