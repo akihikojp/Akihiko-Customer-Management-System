@@ -10,15 +10,18 @@
 </head>
 <body>
 	<h1>顧客管理システム</h1>
-	<form:form modelAttribute="customerForm" action="${pageContext.request.contextPath}/save" method="post">
-	姓:<form:input path="firstName" /><br>
-	名:<form:input path="lastName" /><br>
+	<form:form modelAttribute="customerForm"
+		action="${pageContext.request.contextPath}/save" method="post">
+	姓:<form:input path="firstName" />
+		<br>
+	名:<form:input path="lastName" />
+		<br>
 		<input type="submit" value="作成" />
 	</form:form>
 	<br>
 	<br>
 
-	<table border="0" width="400">
+	<table border="0">
 		<tr>
 			<td>ID</td>
 			<td>姓</td>
@@ -31,8 +34,11 @@
 				<td><c:out value="${customer.id}" /></td>
 				<td><c:out value="${customer.firstName}" /></td>
 				<td><c:out value="${customer.lastName}" /></td>
-				<td><input type="submit" value="編集" /><input type="submit"
-					value="削除" /></td>
+				<td><input type="submit" value="編集" />
+					<form action="${pageContext.request.contextPath}/delete">
+						<input type="submit" value="削除" />
+						<input type="hidden" name = "id" value="<c:out value="${customer.id}"/>">
+					</form></td>
 			</tr>
 		</c:forEach>
 

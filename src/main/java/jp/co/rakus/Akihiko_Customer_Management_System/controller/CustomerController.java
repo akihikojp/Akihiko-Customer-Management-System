@@ -38,6 +38,7 @@ public class CustomerController {
 
 	/**
 	 * 作成および更新後の初期画面の表示
+	 * 
 	 * @param customer
 	 * @param model
 	 * @return
@@ -47,6 +48,19 @@ public class CustomerController {
 		service.save(customer);
 		return "redirect:/";
 
+	}
+
+	/**
+	 * 1件削除メソッド
+	 * 
+	 * @param id
+	 * @param model
+	 * @return　削除後に全件表示
+	 */
+	@RequestMapping("/delete")
+	public String delete(Integer id, Model model) {
+		service.delete(id);
+		return "redirect:/";
 	}
 
 }

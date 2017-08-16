@@ -1,6 +1,5 @@
 package jp.co.rakus.Akihiko_Customer_Management_System.repository;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class CustomerRepository {
 	 * @return 全件検索リスト
 	 */
 	public List<Customer> findAll() {
-		String sql = "SELECT id, first_name, last_name FROM customers;";
+		String sql = "SELECT id, first_name, last_name FROM customers ORDER BY id DESC;";
 		List<Customer> customerList = template.query(sql, customerRowMapper);
 		return customerList;
 	}
@@ -67,5 +66,16 @@ public class CustomerRepository {
 			String sql = "UPDATE customers SET first_name = :firstName, last_name = :lastName WHERE id = :id";
 			template.update(sql, param);
 		}
+	}
+
+	/**
+	 * １件削除メソッド
+	 * @param id
+	 */
+	public void delete(Integer id) {
+		String sql = "DELETE FROM customers WHERE id = :id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(sql, param);
+
 	}
 }

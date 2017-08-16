@@ -37,9 +37,19 @@ public class CustomerService {
 
 	/**
 	 * Insert及びUpdateメソッド
+	 * 
 	 * @param customer
 	 */
 	public void save(Customer customer) {
 		repository.save(customer);
+	}
+
+	/**
+	 * １件削除メソッド
+	 * 
+	 * @param id
+	 */
+	public void delete(Integer id) {
+		repository.delete(id);
 	}
 }
