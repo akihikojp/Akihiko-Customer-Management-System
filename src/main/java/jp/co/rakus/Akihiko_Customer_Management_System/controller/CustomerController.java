@@ -37,6 +37,15 @@ public class CustomerController {
 	}
 
 	/**
+	 * 編集jspへフォワード
+	 * @return　編集jspへフォワード
+	 */
+	@RequestMapping("/rename")
+	public String rename() {
+		return "rename";
+	}
+
+	/**
 	 * 作成および更新後の初期画面の表示
 	 * 
 	 * @param customer
@@ -55,7 +64,7 @@ public class CustomerController {
 	 * 
 	 * @param id
 	 * @param model
-	 * @return　削除後に全件表示
+	 * @return 削除後に全件表示
 	 */
 	@RequestMapping("/delete")
 	public String delete(Integer id, Model model) {
