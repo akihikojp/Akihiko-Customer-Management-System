@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,28 +9,34 @@
 <title>顧客管理システム</title>
 </head>
 <body>
-<h1>顧客管理システム</h1>
+	<h1>顧客管理システム</h1>
+	<form:form modelAttribute="customerForm" method="post">
+	姓:<form:input path="firstName" /><br>
+	名:<form:input path="lastName" /><br>
+		<input type="submit" value="作成" />
+	</form:form>
+	<br>
+	<br>
 
-姓:
-名:
-作成:
+	<table border="0" width="400">
+		<tr>
+			<td>ID</td>
+			<td>姓</td>
+			<td>名</td>
+			<td>編集</td>
+		</tr>
 
-<table border="1">
-<tr>
-<td>ID</td>
-<td>姓</td>
-<td>名</td>
-<td>編集</td>
-</tr>
-
-<tr>
-<td>1</td>
-<td>やひろ</td>
-<td>あきひこ</td>
-<td>編集と削除のボタン</td>
-</tr>
+		<c:forEach var="customer" items="${customerList}">
+			<tr>
+				<td><c:out value="${customer.id}" /></td>
+				<td><c:out value="${customer.firstName}" /></td>
+				<td><c:out value="${customer.lastName}" /></td>
+				<td><input type="submit" value="編集" /><input type="submit"
+					value="削除" /></td>
+			</tr>
+		</c:forEach>
 
 
-</table>
+	</table>
 </body>
 </html>
