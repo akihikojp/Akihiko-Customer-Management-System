@@ -61,7 +61,7 @@ public class CustomerRepository {
 	public void save(Customer customer) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(customer);
 		if (customer.getId() == null) {
-			String sql = "INSERT INTO customers(id, first_name, last_name) VALUES (:id, :firstName, lastName);";
+			String sql = "INSERT INTO customers(first_name, last_name) VALUES (:firstName, :lastName);";
 			template.update(sql, param);
 		} else {
 			String sql = "UPDATE customers SET first_name = :firstName, last_name = :lastName WHERE id = :id";

@@ -25,6 +25,7 @@ public class CustomerController {
 
 	/**
 	 * 初期画面表示(全件検索後)
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -33,6 +34,19 @@ public class CustomerController {
 		List<Customer> customerList = service.findAll();
 		model.addAttribute("customerList", customerList);
 		return "manage";
+	}
+
+	/**
+	 * 作成および更新後の初期画面の表示
+	 * @param customer
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/save")
+	public String save(Customer customer, Model model) {
+		service.save(customer);
+		return "redirect:/";
+
 	}
 
 }

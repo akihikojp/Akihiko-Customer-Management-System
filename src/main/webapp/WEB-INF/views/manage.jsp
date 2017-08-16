@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>顧客管理システム</h1>
-	<form:form modelAttribute="customerForm" method="post">
+	<form:form modelAttribute="customerForm" action="${pageContext.request.contextPath}/save" method="post">
 	姓:<form:input path="firstName" /><br>
 	名:<form:input path="lastName" /><br>
 		<input type="submit" value="作成" />
