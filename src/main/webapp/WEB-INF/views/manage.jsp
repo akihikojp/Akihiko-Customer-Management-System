@@ -35,18 +35,18 @@
 			<tr>
 				<td><c:out value="${customer.id}" /></td>
 				<td><c:out value="${customer.firstName}" /></td>
-				<td><c:out value="${customer.lastName}" /></td>
-
+				<td><c:out value="${customer.lastName}" /></td>	
 				<td>
-					<form action="${pageContext.request.contextPath}/rename">
-						<input type="submit" value="編集" /> <input type="hidden" name="id"
-							value="<c:out value="${customer.id}"/>">
+					<form action="${pageContext.request.contextPath}/load" method="post">
+						<input type="submit" value="編集" /> 
+						<input type="hidden" name="id" value="<c:out value="${customer.id}"/>">
 					</form>
-					<form action="${pageContext.request.contextPath}/delete">
-						<input type="submit" value="削除" /> <input type="hidden" name="id"
-							value="<c:out value="${customer.id}"/>">
+				</td>
+				<td>
+					<form action="${pageContext.request.contextPath}/delete" method="post">
+						<input type="submit" value="削除" />
+						<input type="hidden" name="id" value="<c:out value="${customer.id}"/>">
 					</form>
-
 				</td>
 			</tr>
 		</c:forEach>

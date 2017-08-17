@@ -13,12 +13,12 @@
 		action="${pageContext.request.contextPath}/save">
 		
 		姓:<form:input path="firstName"
-			placeholder="${renameCustomer.firstName}" />
+			placeholder="${updateCustomerName.firstName}" />
 		<br>
-		名:<form:input path="lastName" placeholder="${renameCustomer.lastName}" />
+		名:<form:input path="lastName"
+			placeholder="${updateCustomerName.lastName}" />
 		<br>
-		<input type="hidden" name="id"
-			value="<c:out value="${renameCustomer.id}"/>">
+		<input type="hidden" name="id" value="<c:out value="${updateCustomerName.id}"/>">
 		<%-- 		<c:out value="${renameCustomer.firstName}"/><br> --%>
 		<%-- 		<c:out value="${renameCustomer.lastName}"/><br> --%>
 

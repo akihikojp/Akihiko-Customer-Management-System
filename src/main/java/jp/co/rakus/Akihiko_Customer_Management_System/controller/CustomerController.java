@@ -20,6 +20,10 @@ public class CustomerController {
 	@Autowired
 	CustomerService service;
 
+	/**
+	 * フォームクラス生成
+	 * @return
+	 */
 	@ModelAttribute
 	public CustomerForm setUpForm() {
 		return new CustomerForm();
@@ -29,7 +33,7 @@ public class CustomerController {
 	 * 初期画面表示(全件検索後)
 	 * 
 	 * @param model
-	 * @return
+	 * @return　入力フォーム
 	 */
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -37,31 +41,42 @@ public class CustomerController {
 		model.addAttribute("customerList", customerList);
 		return "manage";
 	}
-
+	
+	@RequestMapping("/rename")
+	public String rename(){
+		return "rename";
+	}
 	/**
-	 * 1件検索をしたのち、編集jspへフォワード
+	 * loadメソッドで1件検索
+	 * これいらないかも・・・。
 	 * 
 	 * @return 編集jspへフォワード
 	 */
-	@RequestMapping("/rename")
-	public String rename(Integer id, Model model) {
-		Customer renameCustomer = service.load(id);
-		model.addAttribute("renameCustomer", renameCustomer);
+	@RequestMapping("/load")
+	public String load(Integer id, Model model) {
+		Customer updateCustomerName = service.load(id);
+		model.addAttribute("updateCustomerName", updateCustomerName);
 		return "rename";
 	}
 
 	/**
-	 * 作成および更新後の初期画面の表示
+	 * Insert/Update後、初期画面表示
 	 * 
 	 * @param customer
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/save")
-	public String save(@Validated CustomerForm form, BindingResult result, Model model) {
+	public String save(@Validated CustomerForm form, 
+					   BindingResult result, 
+					   Model model) {
 
 		if (result.hasErrors()) {
-			return "redirect:/";
+			return index(model);
+		//以下誤り
+		/**　　return "/";　　                 ←フォワードはjspが付くからそもそもエラー*/
+		/**　　return　"redirect:/"; ←@エラーの表示がされない  */
+		/**　　return "manage";　         ←@エラーは表示されるけど、全件検索を経てない */	
 		}
 
 		Customer customer = new Customer();
